@@ -124,7 +124,7 @@ class TimeClock
         while(!is_string($textInput)) {
             echo $message;
             $textInput = $this->checkEscapeText();
-            if($textInput === true) {
+            if($textInput === false) {
                 break;
             }
             if(!is_string($textInput)) {
@@ -206,9 +206,8 @@ class TimeClock
         if($user) {
             if ($user->isAdmin() || $user->$checkFunction()) {
                 return !$actionFunction || $this->actionSuccess($user, $actionFunction, $successMessage);
-            } else {
-                echo($errorMessage);
             }
+            echo($errorMessage);
         }
         return false;
     }
